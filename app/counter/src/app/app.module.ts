@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  ConnectionStore,
-  WALLET_CONFIG,
-  WalletStore,
-} from '@danmt/wallet-adapter-angular';
-import { WalletUiModule } from '@danmt/wallet-adapter-angular-material-ui';
-import { PROGRAM_CONFIGS, ProgramStore } from '@heavy-duty/ng-anchor';
+import { PROGRAM_CONFIGS } from '@heavy-duty/ng-anchor';
+import { WALLET_CONFIG } from '@heavy-duty/wallet-adapter';
+import { WalletAdapterUiModule } from '@heavy-duty/wallet-adapter-ui';
+import { ReactiveComponentModule } from '@ngrx/component';
 import {
   getPhantomWallet,
   getSlopeWallet,
@@ -15,13 +15,9 @@ import {
   getSolletWallet,
 } from '@solana/wallet-adapter-wallets';
 import { environment } from 'src/environments/environment';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 
 import * as counterIdl from '../assets/json/counter.json';
 import { AppComponent } from './app.component';
-import { ReactiveComponentModule } from '@ngrx/component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +28,7 @@ import { ReactiveComponentModule } from '@ngrx/component';
     MatIconModule,
     MatListModule,
     ReactiveComponentModule,
-    WalletUiModule,
+    WalletAdapterUiModule,
   ],
   providers: [
     {
@@ -56,9 +52,6 @@ import { ReactiveComponentModule } from '@ngrx/component';
         },
       },
     },
-    WalletStore,
-    ConnectionStore,
-    ProgramStore,
   ],
   bootstrap: [AppComponent],
 })

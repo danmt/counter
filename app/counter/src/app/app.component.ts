@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConnectionStore, WalletStore } from '@danmt/wallet-adapter-angular';
+import { ConnectionStore, WalletStore } from '@heavy-duty/wallet-adapter';
 import { ProgramStore } from '@heavy-duty/ng-anchor';
 import { CounterStore } from './counter.store';
 
@@ -8,7 +8,7 @@ import { CounterStore } from './counter.store';
   template: `
     <header>
       <h1>Counter</h1>
-      <wallet-multi-button></wallet-multi-button>
+      <hd-wallet-multi-button></hd-wallet-multi-button>
     </header>
     <main>
       <section>
@@ -33,7 +33,7 @@ import { CounterStore } from './counter.store';
             *ngFor="let counter of counters$ | ngrxPush"
             role="listitem"
             class="mat-elevation-z4"
-            style="height: auto; width: 450px; margin-bottom: 1rem; padding: 0.5rem 1rem"
+            style="height: auto; width: 450px; margin-bottom: 1rem; padding: 0.5rem 1rem; background-color: rgba(255, 255, 255, 0.05)"
           >
             <div style="width: 100%;">
               <p style="text-align: center">{{ counter.id }}</p>
@@ -59,7 +59,7 @@ import { CounterStore } from './counter.store';
       </section>
     </main>
   `,
-  providers: [CounterStore],
+  providers: [WalletStore, ConnectionStore, ProgramStore, CounterStore],
 })
 export class AppComponent {
   readonly counters$ = this._counterStore.counters$;
